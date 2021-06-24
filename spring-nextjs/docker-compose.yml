@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  node-server:
+    build: node-server/
+    tty: true
+    container_name: node-server
+    ports:
+      - "3000:3000"
+
+  mysql-server:
+    image: mysql:latest
+    tty: true
+    container_name: mysql-server
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: simpledb
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./mysql-dump:/docker-entrypoint-initdb.d"
+
+  nginx-proxy:
+    image: nginx:1.19.6-alpine
+    tty: true
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx-proxy/disk/etc/nginx/certs:/etc/nginx/certs"
+      - "./nginx-proxy/disk/etc/nginx/conf.d:/etc/nginx/conf.d"
+    depends_on:
+      - tomcat8-server
+
+  tomcat8-server:
+    build: tomcat8-server/
+    tty: true
+    container_name: tomcat8-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-server
