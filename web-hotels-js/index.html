@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Gestió d'hotels Backend</title>
+
+  <!-- CDN Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- Archivo css -->
+  <link href="estilos.css" rel="stylesheet">
+  <!-- Archivo javascript -->
+  <script src="javascript.js" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+
+
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <img src="" alt="">
+        <h3 style="color:#FB7E48">Panell d'administració d'hotels</h3>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Canviar idioma</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <body onload="init();">
+    <form id="dispo" action="cotitzacio.html" method="get">
+        <input name="parJson" id="parJson" value="" />
+    </form>
+    <nav>
+        <a href="">Hotels</a><a href="">Vols</a><a href="">Creuers</a><a href="">Paquets vacacionals</a>
+    </nav>
+    <aside>
+        <h3>Filtres:</h3>
+        <ul id="llistaFiltres">
+            <li>
+                Serveis:
+                <ul>
+                    <li>
+                        Gym &nbsp<input type="checkbox" class="filtre" id="filterGym" onclick="aplicarFiltres();" />
+                    </li>
+                    <li>
+                        Restaurant &nbsp<input type="checkbox" class="filtre" id="filterRestaurant" onclick="aplicarFiltres();" />
+                    </li>
+                    <li>
+                        Spa &nbsp<input type="checkbox" class="filtre" id="filterSpa" onclick="aplicarFiltres();" />
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Menjars:
+                <ul>
+                    <li>
+                        Berenar &nbsp<input type="checkbox" class="filtre" id="filterBerenar" onclick="aplicarFiltres();" />
+                    </li>
+                    <li>
+                        Dinar &nbsp<input type="checkbox" class="filtre" id="filterDinar" onclick="aplicarFiltres();" />
+                    </li>
+                    <li>
+                        Sopar &nbsp<input type="checkbox" class="filtre" id="filterSopar" onclick="aplicarFiltres();" />
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Idioma:
+                <ul>
+                    <li>
+                        Català &nbsp<input type="checkbox" class="filtre" id="filterCat" onclick="aplicarFiltres();" />
+                    </li>
+                    <li>
+                        Castellà &nbsp<input type="checkbox" class="filtre" id="filterCas" onclick="aplicarFiltres();" />
+                    </li>
+                    <li>
+                        Euskera &nbsp<input type="checkbox" class="filtre" id="filterEus" onclick="aplicarFiltres();" />
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </aside>
+    <main>
+        <fieldset id="cercador">
+            <legend>Cercador hotels:</legend>
+            <div>
+                <label>Temporada:</label>
+                <label>Baixa</label> &nbsp<input type="radio" name="temporada" id="baixa" value="baixa" />
+                <label>Alta</label> &nbsp<input type="radio" name="temporada" id="alta" value="alta" checked />
+            </div>
+            <div>
+                <label>Habitacions individuals:</label>
+                <input class="form-control col-2" type="number" id="individual" /><br>
+                <label>Habitacions dobles:</label>
+                <input class="form-control col-2" type="number" id="doble" />
+            </div>
+            <div>
+              <label for="estrellesHotel">Estrelles:</label>
+              <div class="row">
+                <div class="col-xs-3" style="margin-left:15px;">
+              <input class="form-control" type="number" id="estrellesHotel" value="1" min="1" max="6" />
+                </div>
+              </div>
+            </div>
+            <label>Permet mascotes:</label>
+            <input type="radio" id="mascotessi" name="Mascotes" value="Si"> Si
+            <input type="radio" id="mascotesno" name="Mascotes" value="No"> No
+            <div>
+                <button id="cerca" class="btn btn-primary" type="button" onclick="realitzarcerca();">Cerca</button>
+            </div>
+        </fieldset>
+        <div id="resultats">
+            -
+        </div>
+        <div id="preu">
+            <h3>Preu Total:</h3>
+            <div><label id="preuValor">0</label><label id="preuMoneda"></label></div>
+            <div>Seleccio:</div>
+            <div>Habitacions:<label id="numHabitacions">0</label> </div>
+            <button id="continuar" class="btn btn-success" type="button" onclick="continuar();">continuar</button>
+        </div>
+    </main>
+
+</body>
+</html>

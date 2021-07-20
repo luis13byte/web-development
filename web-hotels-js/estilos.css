@@ -1,0 +1,146 @@
+body {
+  overflow-x: hidden;
+}
+
+header {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 5px;
+}
+
+aside {
+  background-color: #D7FFD8;
+  padding: 10px;
+  margin: 5px;
+  margin-bottom: 10px;
+  float: left;
+  width: auto;
+  border-radius: 15px;
+}
+
+main {
+  background-color: #D7E9FF;
+  padding: 10px;
+  margin: 5px;
+  margin-bottom: 30px;
+  float: left;
+  width: auto;
+  border-radius: 15px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+#JsonText {
+  margin: 10px;
+}
+
+#modificar {
+  display: none;
+}
+
+.elementHabitacio {
+  margin-bottom: 10px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+#logoWeb {
+  float: left;
+}
+
+#headerOptions {
+  float: right;
+}
+
+#headerOptions a {
+  margin-left: 20px;
+}
+
+#logoWeb img {
+  width: 150px;
+}
+
+nav a {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#cercador div {
+  margin-bottom: 10px;
+}
+
+.mesInfo {
+  display: none;
+}
+
+.imgMiniHab {
+  width: 100px;
+}
+
+.habitacio {
+  overflow: hidden;
+  width: 840px;
+}
+
+.imatgeHab, .infoHab, .preuHab {
+  float: left;
+  overflow: hidden;
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+.imatgeHab {
+  width: 120px;
+}
+
+.infoHab {
+  width: 500px;
+}
+
+.preuHab {
+  width: 150px;
+}
+
+.informacioExtesa {
+  width: 800px;
+  clear: left;
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin: 5px;
+  text-align: right;
+}
+
+.titolHotel {
+  margin: 0px;
+  float: left;
+}
+
+.hotelDescripcio {
+  clear: both;
+}
+
+.estrelles {
+  margin: 2px 0 0 10px;
+  float: left;
+}
+
+.seleccionar {
+  text-align: right;
+  margin-right: 10px;
+}
+
+#preu {
+  width: 150px;
+  overflow: hidden;
+  float: left;
+  border: 1px solid black;
+}
+
+#resultats {
+  float: left;
+  width: 840px;
+}
