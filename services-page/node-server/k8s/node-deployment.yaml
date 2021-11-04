@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-server
+  labels:
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: nextjs
+        tier: frontend
+    spec:
+      containers:
+      - name: php
+        image: luis13byte/node-servicespage:16.13.0-alpine3.14
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /manifest.json
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 10
+          initialDelaySeconds: 60
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /manifest.json
+            port: 3000
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 10
+          initialDelaySeconds: 30
+        env:
+          - name: "NEXTJS_APP_ENVIRONMENT"
+            value: "PROD"
+        ports:
+          - containerPort: 3000
+            protocol: TCP
+        resources:
+          requests:
+            cpu: 900m
+            memory: 1G
